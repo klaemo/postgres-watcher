@@ -4,7 +4,9 @@
   "description": "Watch your PostgreSQL tables for changes",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js | tap-spec"
+    "babel": "babel index.js --out-dir dist",
+    "prepublish": "npm run babel",
+    "test": "babel-node test/test.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,8 @@
     "pg": "^4.3.0"
   },
   "devDependencies": {
-    "postgres-triggers": "^0.1.1",
+    "babel": "^5.0.12",
+    "postgres-triggers": "^0.1.4",
     "tap-spec": "^3.0.0",
     "tape": "^4.0.0"
   }

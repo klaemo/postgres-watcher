@@ -6,7 +6,6 @@ Watches your PostgreSQL DB for changes. Before using this module you need to set
 Heavily inspired by [this blog post](https://blog.andyet.com/2015/04/06/postgres-pubsub-with-json) by [@fritzy](https://github.com/fritzy).
 
 **This module is in its early stages. Feedback and PRs welcome!**
-**Note**: io.js only for now!
 
 ## Install
 
