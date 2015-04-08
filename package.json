@@ -1,10 +1,10 @@
 {
   "name": "postgres-watcher",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Watch your PostgreSQL tables for changes",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/test.js | tap-spec"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/klaemo/postgres-watcher/issues"
   },
-  "homepage": "https://github.com/klaemo/postgres-watcher"
+  "homepage": "https://github.com/klaemo/postgres-watcher",
+  "dependencies": {
+    "pg": "^4.3.0"
+  },
+  "devDependencies": {
+    "postgres-triggers": "^0.1.1",
+    "tap-spec": "^3.0.0",
+    "tape": "^4.0.0"
+  }
 }
