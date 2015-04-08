@@ -1,0 +1,26 @@
+{
+  "name": "postgres-watcher",
+  "version": "1.0.0",
+  "description": "Watch your PostgreSQL tables for changes",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klaemo/postgres-watcher.git"
+  },
+  "keywords": [
+    "postgres",
+    "postgresql",
+    "changes",
+    "sql",
+    "watcher"
+  ],
+  "author": "Clemens Stolle <klaemo@fastmail.fm>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/klaemo/postgres-watcher/issues"
+  },
+  "homepage": "https://github.com/klaemo/postgres-watcher"
+}
