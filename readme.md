@@ -1,4 +1,4 @@
-# postgres-watcher
+# postgres-watcher [![Build Status](https://travis-ci.org/klaemo/postgres-watcher.svg)](https://travis-ci.org/klaemo/postgres-watcher)
 [![NPM](https://nodei.co/npm/postgres-watcher.png)](https://nodei.co/npm/postgres-watcher/)
 
 Watches your PostgreSQL DB for changes. Before using this module you need to set up some triggers, for example with [postgres-triggers](https://www.npmjs.com/package/postgres-triggers).

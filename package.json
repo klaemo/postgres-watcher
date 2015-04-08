@@ -6,7 +6,7 @@
   "scripts": {
     "babel": "babel index.js --out-dir dist",
     "prepublish": "npm run babel",
-    "test": "babel-node test/test.js | tap-spec"
+    "test": "babel-node test/test.js"
   },
   "repository": {
     "type": "git",
