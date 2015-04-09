@@ -15,13 +15,18 @@ npm i postgres-watcher
 
 ## Usage (API)
 
-This module is basically an event emitter.
+This module is basically an event emitter. It doesn't make any assumption about your trigger payload, except that it should be a JSON object.
 
 ```javascript
 const Watcher = require('postgres-watcher')
 const watcher = Watcher({
   db: 'postgres://foo@localhost:5432/db',
-  channel: 'table_update' // optional
+  channel: 'table_update', // optional
+  
+  // optional filter function.
+  // only payloads which return a truthy value 
+  // will later emit a 'change' event
+  filter: function (payload) { return payload.id >= 42 }
 })
 
 // listen for changes

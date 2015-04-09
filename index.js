@@ -9,51 +9,55 @@ function Listener (opts) {
   this.channel = opts.channel || 'table_update'
   this._connectionString = opts.db
   this.running = false
+  this.filter = typeof opts.filter === 'function' ? opts.filter : () => true
 }
 
 Listener.prototype = Object.create(require('events').EventEmitter.prototype)
 
-Listener.prototype.start = function (cb) {
-  const self = this
-  cb = cb || function () {}
-
-  pg.connect(this._connectionString, function(err, client) {
+Listener.prototype.start = function (cb = () => {}) {
+  pg.connect(this._connectionString, (err, client) => {
     if (err) return cb(err)
 
-    self.client = client
+    this.client = client
 
     // listen for notification
-    client.on('notification', function (msg) {
-      if (msg.name === 'notification' && msg.channel === self.channel) {
+    client.on('notification', (msg) => {
+      if (msg.name === 'notification' && msg.channel === this.channel) {
+        var payload
         try {
-          self.emit('change', JSON.parse(msg.payload))
+          payload = JSON.parse(msg.payload)
         } catch (err) {
-          self.emit('error', err)
+          this.emit('error', err)
+        }
+
+        if (this.filter(payload)) {
+          this.emit('change', payload)
         }
       }
     })
 
-    client.query('LISTEN table_update', function (err2) {
+    client.query('LISTEN table_update', (err2) => {
       if (err2) return cb(err2)
-      self.running = true
+      this.running = true
       cb()
     })
   })
+
+  return this
 }
 
-Listener.prototype.stop = function (cb) {
-  const self = this
-  cb = cb || function() {}
-
+Listener.prototype.stop = function (cb = () => {}) {
   if (!this.running || !this.client) return cb()
 
-  this.client.query('UNLISTEN table_update', function (err2) {
+  this.client.query('UNLISTEN table_update', (err2) => {
     if (err2) return cb(err2)
 
-    self.running = false
+    this.running = false
 
     // return client to the pool
-    self.client.end()
+    this.client.end()
     cb(null)
   })
+
+  return this
 }
