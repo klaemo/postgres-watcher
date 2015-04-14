@@ -1,6 +1,6 @@
 {
   "name": "postgres-watcher",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Watch your PostgreSQL tables for changes",
   "main": "dist/index.js",
   "scripts": {
